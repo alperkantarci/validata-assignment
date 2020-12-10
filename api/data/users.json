@@ -1,0 +1,26 @@
+[
+  {
+    "id": "6e4dfc9c-d493-4504-b69a-7714098f9665",
+    "email": "admin@admin.com",
+    "password": "admin",
+    "firstName": "Admin",
+    "lastName": "Admin",
+    "roleId": 1
+  },
+  {
+    "id": "903eb699-7831-446f-8674-2518560a1e99",
+    "email": "manager@manager.com",
+    "password": "manager",
+    "firstName": "Manager",
+    "lastName": "Manager",
+    "roleId": 2
+  },
+  {
+    "id": "6206e616-6661-42fa-a247-9bca505d1a86",
+    "email": "editor@editor.com",
+    "password": "editor",
+    "firstName": "Editor",
+    "lastName": "Editor",
+    "roleId": 3
+  }
+]

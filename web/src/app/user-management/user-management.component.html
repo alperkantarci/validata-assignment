@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header">
+    User Management
+  </div>
+  <div class="card-body">
+    <kendo-grid [kendoGridBinding]="gridView" kendoGridSelectBy="id" [selectedKeys]="mySelection" [pageSize]="20"
+      [pageable]="true" [sortable]="true" [groupable]="true" [reorderable]="true" [resizable]="true" [height]="480"
+      [columnMenu]="{ filter: true }">
+      <ng-template kendoGridToolbarTemplate>
+        <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)" />
+        <button kendoButton icon="delete" [primary]="true" style="float:right;"
+          (click)="openConfirmDialog()">Delete</button>
+        <button kendoButton icon="edit" style="float:right; background: rgb(81, 127, 187); color: white;"
+          (click)="openUserEditDialog()">Edit</button>
+        <button kendoButton icon="plus" style="float:right; background: rgb(95, 175, 95); color: white;"
+          (click)="openUserCreateDialog()">Create</button>
+      </ng-template>
+      <kendo-grid-checkbox-column [width]="45" [headerClass]="{'text-center': true}" [class]="{'text-center': true}"
+        [resizable]="false" [columnMenu]="false" showSelectAll="true"></kendo-grid-checkbox-column>
+      <kendo-grid-column field="firstName" title="First Name" [width]="130">
+      </kendo-grid-column>
+      <kendo-grid-column field="lastName" title="Last Name" [width]="200">
+      </kendo-grid-column>
+      <kendo-grid-column field="email" title="Email" [width]="200">
+      </kendo-grid-column>
+      <kendo-grid-column field="roleId" title="Role" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div>{{ getRoleText(dataItem.roleId) }}</div>
+      </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+
+    <!-- kendo create/edit dialog -->
+    <!-- <kendo-dialog title="User info" *ngIf="userInfoDialogOpened" (close)="closeUserInfoDialog('cancel')"
+      [minWidth]="250" [width]="450">
+      <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
+      <kendo-dialog-actions>
+        <button kendoButton (click)="closeUserInfoDialog('no')">No</button>
+        <button kendoButton (click)="closeUserInfoDialog('yes')" primary="true">Yes</button>
+      </kendo-dialog-actions>
+    </kendo-dialog> -->
+    <!-- <app-user-dialog #userDialog action="Edit"></app-user-dialog> -->
+    <template #userDialog></template>
+
+    <!-- kendo confirm dialog -->
+    <kendo-dialog title="Please confirm" *ngIf="confirmDialogOpened" (close)="closeConfirmDialog('cancel')"
+      [minWidth]="250" [width]="450">
+      <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
+      <kendo-dialog-actions>
+        <button kendoButton (click)="closeConfirmDialog('no')">No</button>
+        <button kendoButton (click)="closeConfirmDialog('yes')" primary="true">Yes</button>
+      </kendo-dialog-actions>
+    </kendo-dialog>
+  </div>
+</div>

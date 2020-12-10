@@ -1,0 +1,62 @@
+<!-- kendo create/edit dialog -->
+<kendo-dialog title="User {{action}}" *ngIf="userDialogOpened" (close)="closeUserDialog('cancel')" [minWidth]="250"
+  [width]="450">
+  <form [formGroup]="userForm">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" placeholder="Enter first name" formControlName="firstName">
+      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+        <div class="error-msg" *ngIf="firstName.errors.required">
+          First Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" placeholder="Enter last name" formControlName="lastName">
+      <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+        <div class="error-msg" *ngIf="lastName.errors.required">
+          Last Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" formControlName="email">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div class="error-msg" *ngIf="email.errors.required">
+          Email is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="action === 'Create'">
+      <label for="pw">Password</label>
+      <input type="password" class="form-control" id="pw" placeholder="Enter password" formControlName="password">
+      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div class="error-msg" *ngIf="password.errors.required">
+          Password is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select class="form-control" id="role" formControlName="roleId">
+        <option value="" selected disabled>Please select</option>
+        <option [ngValue]="1">Admin</option>
+        <option [ngValue]="2">Manager</option>
+        <option [ngValue]="3">Editor</option>
+      </select>
+      <div *ngIf="roleId.invalid && (roleId.dirty || roleId.touched)">
+        <div class="error-msg" *ngIf="roleId.errors.required">
+          Role is required.
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <kendo-dialog-actions>
+    <button kendoButton (click)="closeUserDialog('cancel')">Cancel</button>
+    <button kendoButton (click)="closeUserDialog(action)" [disabled]="!userForm.valid"
+      primary="true">{{action}}</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

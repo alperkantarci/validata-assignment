@@ -1,0 +1,26 @@
+<div *ngIf="currentUser; else other_content">
+  <div class="custom-toolbar">
+    <button kendoButton icon="menu" look="flat" (click)="drawer.toggle()"></button>
+    <span class="box" routerLink="/">
+      Validata Assignment
+    </span>
+    <button kendoButton class="box logout-btn" icon="sign-out" look="flat" (click)="logout()">
+      Logout
+    </button>
+  </div>
+  <kendo-drawer-container>
+    <kendo-drawer #drawer [items]="items" [mode]="'push'" [mini]="true" [expanded]="true" (select)="onSelect($event)">
+    </kendo-drawer>
+
+    <kendo-drawer-content>
+      <div class="page-content">
+        <router-outlet></router-outlet>
+      </div>
+    </kendo-drawer-content>
+  </kendo-drawer-container>
+</div>
+
+<!-- Login Page -->
+<ng-template #other_content>
+  <router-outlet></router-outlet>
+</ng-template>
